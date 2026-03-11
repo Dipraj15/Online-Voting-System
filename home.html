@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+  <body>
+    <div class="uldiv">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <ul class="navbar" id="navMenu">
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="login_page.html">LOGIN</a></li>
+            <li><a href="admin.html">ADMIN</a></li>
+        </ul>
+    </div>
+    
+
+    <img class="logo" src="img/1744180608189.png" alt="Online Voting Logo">
+
+    <div class="main">
+        <h3 class="online">Online</h3>
+        <h1 class="voting">VOTING</h1>
+        <h3 class="online">System Website</h3>
+    </div>
+
+        <p>"Experience the future of voting<br> with our secure online platform. <br>Vote quickly, safely, and conveniently<br> from any device, anywhere in the world"</p>
+    <input type="button" value="Let's Vote..." class="button" onclick="location.href='login_page.html'">
+    
+   
+    <img class="mainimg" src="img/online-voting-6003101-4972931.webp">
+    <script>
+        function toggleMenu() {
+    var menu = document.getElementById("navMenu");
+    menu.classList.toggle("active");
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Voting System</title>
+  <style>
+    body {
+      background-color: black;
+    }
+    .head {
+      position: sticky;
+      top: 0;
+      text-transform: uppercase;
+      background-color: rgb(242, 255, 0);
+      text-align: center;
+      padding: 20px 0;
+      font-family: cursive;
+    }
+    .container {
+      display: inline;
+      justify-content: space-evenly;
+    }
+    .box {
+      border: 2px solid white;
+      width: 100%;
+      height: 400px;
+      margin: 20px 0;
+      background-color: rgb(145, 224, 217);
+      border-radius: 20px;
+    }
+    .box1img {
+      float: left;
+      padding: 10px;
+    }
+    .textinfo {
+      text-align: center;
+      line-height: 18px;
+    }
+    .innerh {
+      font-size: 25px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .innerp {
+      font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    }
+    .vote {
+      padding: 10px 40px;
+      background-color: rgb(255, 0, 0);
+      color: white;
+      font-size: 30px;
+      border-radius: 15px;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .vote:hover {
+      background-color: rgb(0, 4, 255);
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 class="head">Online Voting System</h2>
+
+<div class="container">
+  <!-- Dipraj Patil -->
+  <div class="box">
+    <div class="box1img">
+      <h3>SYMBOL:</h3>
+      <img src="img/aro.png" alt="Aeroplane" width="150px">
+    </div>
+    <div class="textinfo">
+      <p class="innerp">NAME OF CANDIDATE:</p>
+      <h5 class="innerh">Dipraj Patil</h5>
+      <p class="innerp">NAME OF SYMBOL:</p>
+      <h5 class="innerh">Aeroplane</h5>
+      <hr>
+      <button class="vote" onclick="voteNow(5)">VOTE</button>
+    </div>
+  </div>
+
+  <!-- Abhijeet Patil -->
+  <div class="box">
+    <div class="box1img">
+      <h3>SYMBOL:</h3>
+      <img src="img/bo.png" alt="Book" width="150px">
+    </div>
+    <div class="textinfo">
+      <p class="innerp">NAME OF CANDIDATE:</p>
+      <h5 class="innerh">Abhijeet Patil</h5>
+      <p class="innerp">NAME OF SYMBOL:</p>
+      <h5 class="innerh">Book</h5>
+      <hr>
+      <button class="vote" onclick="voteNow(6)">VOTE</button>
+    </div>
+  </div>
+
+  <!-- Aniket Desai -->
+  <div class="box">
+    <div class="box1img">
+      <h3>SYMBOL:</h3>
+      <img src="img/ch.png" alt="Chair" width="150px">
+    </div>
+    <div class="textinfo">
+      <p class="innerp">NAME OF CANDIDATE:</p>
+      <h5 class="innerh">Aniket Desai</h5>
+      <p class="innerp">NAME OF SYMBOL:</p>
+      <h5 class="innerh">Chair</h5>
+      <hr>
+      <button class="vote" onclick="voteNow(7)">VOTE</button>
+    </div>
+  </div>
+
+  <!-- Jayesh Patil -->
+  <div class="box">
+    <div class="box1img">
+      <h3>SYMBOL:</h3>
+      <img src="img/biii.png" alt="Bicycle" width="150px">
+    </div>
+    <div class="textinfo">
+      <p class="innerp">NAME OF CANDIDATE:</p>
+      <h5 class="innerh">Jayesh Patil</h5>
+      <p class="innerp">NAME OF SYMBOL:</p>
+      <h5 class="innerh">Cycle</h5>
+      <hr>
+      <button class="vote" onclick="voteNow(8)">VOTE</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio to Play -->
+<audio id="voteAudio">
+  <source src="ad/bipandinstruction.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- JavaScript -->
+<script>
+function voteNow(cid) {
+    var audio = document.getElementById("voteAudio");
+    audio.play(); // Play the sound
+
+    setTimeout(function() {
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'api/vote.php';
+
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'cid';
+        input.value = cid;
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }, 1500); // Wait 1.5 seconds after audio
+}
+</script>
+
+</body>
+</html>

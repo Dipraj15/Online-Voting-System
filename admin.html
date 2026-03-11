@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        background-color: black;
+    }
+    .he{
+            background-color:rgb(236, 248, 4);
+            text-align: center;
+            padding: 10px 0px 10px 0px;
+            font-family: cursive;
+            
+        }
+
+    .boxx{
+            text-align: center;
+            border: 4px solid black;
+            margin-left: 25%;
+            margin-right: 25%;
+            border-radius: 20px;
+            background-color: rgb(0, 204, 255);
+        }
+
+    .Submit{
+            margin: 20px;
+            padding: 10px 40px 10px 40px;
+            border-radius: 10px;
+            background-color: rgb(59, 252, 0);
+            color: rgb(0, 0, 0);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }   
+    </style>
+</head>
+<body>
+    <h1 class="he">ADMIN</h1> 
+    <form action="./api/ad_log.php" method="post">
+        <div class="boxx">
+            <h2>ADMIN</h2>
+            <p>This For Only Admin..!</p>
+            <hr>
+           
+            <br><br>
+            <label for="a_id">ADMIN ID:</label>
+            <input type="text" class="adm" placeholder="Enter Admin id" name="adm" oninput="allowNumbersOnly(event)" maxlength="5" required >
+            <br><br>
+            <label for="pass1">Password:</label>
+            <input type="password" class="a_pass" name="password" placeholder="Enter Your Password" maxlength="8" required>
+            <br><br> 
+           <input type="submit" value="Login" name="btn" class="Submit">
+        </div>
+    </form> 
+    <Script>
+         function allowNumbersOnly(event) {
+            const input = event.target;
+            // Remove all non-digit characters, and ensure no more than 5 digits
+            input.value = input.value.replace(/\D/g, '').slice(0, 5); // Keep only numbers and limit to 10 digits
+        }
+    </Script>
+</body>
+</html>

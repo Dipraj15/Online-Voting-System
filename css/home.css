@@ -1,0 +1,260 @@
+body {
+    background-color: rgba(0, 221, 255, 0.926);
+    overflow: hidden;
+}
+
+.uldiv {
+    margin-top: 0%;
+    animation: top 1s 1;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0%;
+    padding: 10px 10px;
+    overflow: hidden;
+    display: flex;
+    float: right;
+
+}
+
+li {
+    float: right;
+
+}
+
+li a {
+    display: block;
+    padding: 20px 30px;
+    margin: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+li a:hover {
+    color: aliceblue;
+    background-color: rgb(134, 28, 28);
+}
+
+
+.main {
+    color: rgb(134, 28, 28);
+    position: absolute;
+    left: 150px;
+    top: 200px;
+    font-size: 50px;
+    line-height: 10px;
+    font-family: cursive
+}
+
+.main {
+    animation: left 2s 1;
+}
+
+.online {
+    font-size: 30px;
+
+}
+
+.button {
+    padding: 20px;
+    margin: 5px;
+    color: rgb(255, 255, 255);
+    background: rgb(131, 58, 180);
+    background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 52%, rgba(252, 176, 69, 1) 100%);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    position: absolute;
+    left: 200px;
+    bottom: 120px;
+    font-size: 20px;
+    border-radius: 20px;
+    animation: down 1s 1;
+}
+
+.button:hover {
+    background-color: deepskyblue;
+    color: black;
+}
+
+.mainimg {
+    width: 60%;
+    height: 80%;
+    position: absolute;
+    top: 150px;
+    right: 40px;
+    animation: faderight 2s 1;
+}
+
+.logo {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    height: 180px;
+    width: 250px;
+    animation: fade 4s 1;
+}
+
+.voting {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+p {
+    font-size: 15px;
+    position: absolute;
+    left: 170px;
+    bottom: 200px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 2px;
+    animation: fadep 2s 1;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 1;
+    }
+}
+
+/* @keyframes faderight
+        {
+         from{
+            opacity: 0;
+            transform:translateX(40px);
+             }
+         to{
+            opacity: 1;
+           }
+        }*/
+@keyframes faderight {
+    from {
+        margin-right: -100%;
+    }
+
+    to {
+        margin-right: 0%;
+    }
+}
+
+
+@keyframes left {
+    from {
+        margin-left: -100%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+}
+
+@keyframes top {
+    from {
+
+        margin-top: -100%;
+    }
+
+    to {
+        margin-top: 0%;
+    }
+}
+
+@keyframes down {
+    from {
+
+        margin-bottom: -100%;
+    }
+
+    to {
+        margin-bottom: 0%;
+    }
+}
+
+@keyframes fadep {
+    0% {
+        font-size: 0px;
+        opacity: 0;
+    }
+
+    80% {
+        font-size: 15px;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+      overflow: auto;
+      text-align: center;
+    }
+  
+    .uldiv {
+      float: none;
+    }
+  
+    .navbar {
+      flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      display: none;
+      z-index: 1000;
+    }
+  
+    .navbar.active {
+      display: flex;
+    }
+  
+    .navbar li {
+      float: none;
+      width: 100%;
+    }
+  
+    .navbar li a {
+      padding: 15px;
+      margin: 0;
+      border-radius: 0;
+    }
+  
+    .main {
+      position: static;
+      margin-top: 50px;
+      font-size: 30px;
+      text-align: center;
+    }
+  
+    .mainimg {
+      position: static;
+      width: 90%;
+      height: auto;
+      margin-top: 30px;
+    }
+  
+    .logo {
+      position: static;
+      height: 120px;
+      width: 180px;
+      margin-top: 10px;
+    }
+  
+    .button {
+      position: static;
+      margin: 20px auto;
+      display: block;
+    }
+  
+    p {
+      position: static;
+      margin: 20px;
+      font-size: 14px;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }

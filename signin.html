@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+
+
+        .he{
+            background-color:rgb(236, 248, 4);
+            text-align: center;
+            padding: 10px 0px 10px 0px;
+            font-family: cursive;
+            
+        }
+
+        .boxx{
+            text-align: center;
+            border: 4px solid black;
+            margin-left: 25%;
+            margin-right: 25%;
+            border-radius: 20px;
+            background-color: rgb(0, 204, 255);
+        }
+
+        .reset{
+            margin: 20px;
+            padding: 10px 40px 10px 40px;
+            border-radius: 10px;
+            background-color: red;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+
+        }
+
+        .Submit{
+            margin: 20px;
+            padding: 10px 40px 10px 40px;
+            border-radius: 10px;
+            background-color: rgb(59, 252, 0);
+            color: rgb(0, 0, 0);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+        <h1 class="he">SIGN UP</h1> 
+    <form action="./api/register.php" method="post">
+        <div class="boxx">
+            <h2>SIGN UP</h2>
+            <p>Please Fill All Information Properly..!</p>
+            <hr>
+            <label for="pr">PRN Number:</label>
+            <input type="text" class="pr" name="pr" placeholder="Enter Your PRN Number" oninput="allowNumbersOnly(event)" maxlength="10" required >
+            <br><br>
+            <label for="fname">FIRST NAME:</label>
+            
+            <input type="text" class="in_fn" name="in_fn" placeholder="Enter Your First Name" pattern="[A-Za-z]+" title="Only alphabates are required" 
+            oninput="allowAlphabetsOnly(event)" required>
+             <br><br>
+            <label for="mname">Middel NAME:</label>
+            
+            <input type="text" class="in_mn" name="in_mn" placeholder="Enter Your Middel Name" pattern="[A-Za-z]+" title="Only alphabates are required"
+            oninput="allowAlphabetsOnly(event)" required>
+            <br><br>
+            <label for="lname">Last Name:</label>
+            
+            <input type="text" class="in_ln" name="in_ln" placeholder="Enter Your Last Name" pattern="[A-Za-z]+" title="Only alphabates are required"
+            oninput="allowAlphabetsOnly(event)" required >
+            <br><br>
+            <label for="dept">Department:</label>
+            <select name="dept" class="dept" required>
+                <option value="b.tech">B.TECH</option>
+                <option value="mca">MCA</option>
+                <option value="mba">MBA</option>
+            </select>
+            <br><br>
+            <label for="mail">Email:</label>
+            
+            <input type="email" class="email" name="email" placeholder="Enter Your Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+            title="Please enter a valid email address (e.g. example@domain.com)">
+            <br><br>
+            <label for="gender">Gender:</label>
+
+            <input type="radio"  name="gender" value="male">
+            <label for="gender">Male</label> ||
+            <input type="radio" name="gender" value="Female">
+            <label for="gender">Female</label> ||
+            <input type="radio"  name="gender" value="other">
+            <label for="gender">Other</label>
+            <br><br>
+            <label for="dob">Date Of Birth:</label>
+            <input type="date" name="date" class="date">
+            <br><br>
+            <label for="pass1">Create password:</label>
+            <input type="password" class="pass" name="pass" placeholder="Create Your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="8"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"required>
+            <br><br>
+            <label for="pass2">Conform Password:</label>
+            <input type="password" class="c_pass" name="cpass" placeholder="Conform Your Password">
+            <br><br>
+            <input type="reset" value="Reset" name="reset" class="reset"> 
+            <input type="submit" value="Submit" name="submit " class="Submit">
+            
+        </div>
+    </form>
+
+    <script>
+        function allowAlphabetsOnly(event) {
+            const input = event.target;
+            input.value =input.value.toUpperCase();
+            input.value = input.value.replace(/[^A-Za-z]/g, ''); // Removes non-alphabet characters
+        }
+
+        function allowNumbersOnly(event) {
+            const input = event.target;
+            // Remove all non-digit characters, and ensure no more than 10 digits
+            input.value = input.value.replace(/\D/g, '').slice(0, 10); // Keep only numbers and limit to 10 digits
+        }
+    </script>
+</body>
+</html>

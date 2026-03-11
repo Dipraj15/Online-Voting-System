@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VOTING RESULTS</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: yellow;
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 20px;
+        }
+        .section {
+            background-color: #1a1a1a;
+            margin: 20px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,255,255,0.3);
+        }
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .box {
+            background-color: #003366;
+            color: white;
+            width: 200px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .box:hover {
+            transform: scale(1.05);
+        }
+        .winner-box {
+            background: linear-gradient(135deg, #6e00ff 0%, #ff00f7 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+            max-width: 600px;
+            font-size: 18px;
+            box-shadow: 0 0 15px rgba(255,0,255,0.5);
+        }
+        .title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .symbol {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        .vote-count {
+            font-size: 24px;
+            color: gold;
+            font-weight: bold;
+        }
+        .loading {
+            color: #ccc;
+            font-style: italic;
+        }
+        .error {
+            color: #ff5555;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">VOTING RESULTS DASHBOARD</div>
+
+    <!-- WINNER SECTION -->
+    <div class="section">
+        <div class="winner-box" id="winnerBox">
+            Loading winner candidate...
+        </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="section">
+        <h2 style="text-align: center; margin-top: 0;">Voting Statistics</h2>
+        <div class="box-container">
+            <div class="box">
+                <div class="title">TOTAL VOTERS</div>
+                <div id="totalVoters" class="vote-count loading">...</div>
+            </div>
+            <div class="box">
+                <div class="title">VOTES CAST</div>
+                <div id="totalVoted" class="vote-count loading">...</div>
+            </div>
+            <div class="box">
+                <div class="title">TURNOUT</div>
+                <div id="turnoutPercent" class="vote-count loading">...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Candidates Section -->
+    <div class="section">
+        <h2 style="text-align: center; margin-top: 0;">Candidates Results</h2>
+        <div class="box-container" id="candidateSection">
+            <div class="loading">Loading candidates data...</div>
+        </div>
+    </div>
+
+    <script>
+async function fetchDashboardData() {
+    try {
+        const response = await fetch("./api/get_dashboard_data.php");
+        const data = await response.json();
+
+        // -------- VOTER STATS --------
+        document.getElementById("totalVoters").innerText = data.total_voters;
+        document.getElementById("totalVoted").innerText = data.total_voted;
+
+        let turnout = 0;
+        if (data.total_voters > 0) {
+            turnout = ((data.total_voted / data.total_voters) * 100).toFixed(1);
+        }
+        document.getElementById("turnoutPercent").innerText = turnout + "%";
+
+        // -------- CANDIDATES --------
+        const section = document.getElementById("candidateSection");
+        section.innerHTML = "";
+
+        let maxVotes = 0;
+        let winners = [];
+
+        data.candidates.forEach(c => {
+            const votes = parseInt(c.votes);
+
+            // show candidate box
+            section.innerHTML += `
+                <div class="box">
+                    <div class="title">${c.cname}</div>
+                    <div class="symbol">${c.symbol}</div>
+                    <div class="vote-count">${votes}</div>
+                </div>
+            `;
+
+            // winner logic
+            if (votes > maxVotes) {
+                maxVotes = votes;
+                winners = [c];
+            } else if (votes === maxVotes) {
+                winners.push(c);
+            }
+        });
+
+        // -------- WINNER / TIE --------
+        const winnerBox = document.getElementById("winnerBox");
+
+        if (maxVotes === 0) {
+            winnerBox.innerHTML = "No votes cast yet.";
+        } 
+        else if (winners.length === 1) {
+            winnerBox.innerHTML = `
+                <div style="font-size:24px;">🏆 WINNER 🏆</div>
+                <b>${winners[0].cname}</b><br>
+                Symbol: ${winners[0].symbol}<br>
+                Votes: ${maxVotes}
+            `;
+        } 
+        else {
+            let tieNames = winners
+                .map(w => `${w.cname} (${w.symbol})`)
+                .join("<br>");
+
+            winnerBox.innerHTML = `
+                <div style="font-size:24px;">🤝 TIE 🤝</div>
+                ${tieNames}<br>
+                Votes: ${maxVotes}
+            `;
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Error loading dashboard data");
+    }
+}
+
+// load dashboard automatically
+fetchDashboardData();
+</script>
+
+
+</body>
+</html>
